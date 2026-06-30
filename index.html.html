@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1A1A1A">
+  <title>Altamira Propiedades · Bienes Raíces</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%231A1A1A'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='52' font-weight='700' fill='%23C9A96E' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+  <meta name="description" content="Altamira Propiedades — Compra, venta y alquiler de inmuebles premium. Más de 20 años de experiencia.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="inmobiliaria.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo" aria-label="Altamira Propiedades — inicio">
+    <span class="nav-logo-name">Altamira</span>
+    <span class="nav-logo-tag">Propiedades</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#propiedades" class="activo">Propiedades</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#tasacion">Tasación</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto" class="nav-cta">Consultar →</a></li>
+  </ul>
+  <button class="nav-ham" id="navHam" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MENÚ MOBILE -->
+<div class="nav-mobile-overlay" id="navMobile" role="dialog" aria-label="Menú de navegación" aria-hidden="true">
+  <a href="#propiedades" onclick="cerrarMenu()">Propiedades</a>
+  <a href="#servicios" onclick="cerrarMenu()">Servicios</a>
+  <a href="#tasacion" onclick="cerrarMenu()">Tasación</a>
+  <a href="#nosotros" onclick="cerrarMenu()">Nosotros</a>
+  <a href="#contacto" class="nav-mobile-cta" onclick="cerrarMenu()">Consultar →</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" aria-label="Inicio">
+  <div class="hero-bg" role="img" aria-label="Casa moderna con jardín"></div>
+  <p class="hero-eyebrow fade-up">Inmobiliaria de confianza · Desde 2004</p>
+  <h1 class="fade-up">Tu próximo hogar<br><em>te está esperando.</em></h1>
+  <p class="hero-sub fade-up">Más de 20 años conectando familias con las mejores propiedades. Venta, alquiler y asesoramiento en todo el país.</p>
+  <div class="hero-search fade-up" role="search" aria-label="Buscar propiedades">
+    <div class="search-group">
+      <span class="search-label">Operación</span>
+      <select id="f-operacion" aria-label="Tipo de operación">
+        <option value="">Todas</option>
+        <option value="venta">Comprar</option>
+        <option value="alquiler">Alquilar</option>
+      </select>
+    </div>
+    <div class="search-group">
+      <span class="search-label">Tipo</span>
+      <select id="f-tipo" aria-label="Tipo de propiedad">
+        <option value="">Todos</option>
+        <option value="departamento">Departamento</option>
+        <option value="casa">Casa</option>
+        <option value="ph">PH</option>
+        <option value="local">Local</option>
+      </select>
+    </div>
+    <div class="search-group">
+      <span class="search-label">Zona</span>
+      <input type="text" id="f-zona" placeholder="Ej: Palermo, Belgrano…" aria-label="Zona">
+    </div>
+    <button class="hero-search-btn" onclick="filtrar()" aria-label="Buscar">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      Buscar
+    </button>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar" aria-label="Datos de Altamira">
+  <div class="stat-item"><span class="stat-num" data-target="1200">0</span><span class="stat-label">Propiedades activas</span></div>
+  <div class="stat-sep" aria-hidden="true"></div>
+  <div class="stat-item"><span class="stat-num">20 años</span><span class="stat-label">En el mercado</span></div>
+  <div class="stat-sep" aria-hidden="true"></div>
+  <div class="stat-item"><span class="stat-num" data-target="4800">0</span><span class="stat-label">Operaciones cerradas</span></div>
+  <div class="stat-sep" aria-hidden="true"></div>
+  <div class="stat-item"><span class="stat-num" data-target="98" data-suffix="%">0</span><span class="stat-label">Clientes satisfechos</span></div>
+</div>
+
+<!-- FILTROS -->
+<div class="filtros-bar" id="filtros-bar" aria-label="Filtros rápidos">
+  <button class="filtro-btn activo" onclick="filtroRapido(this,'','')">Todos</button>
+  <div class="filtro-sep" aria-hidden="true"></div>
+  <button class="filtro-btn" onclick="filtroRapido(this,'venta','')">En venta</button>
+  <button class="filtro-btn" onclick="filtroRapido(this,'alquiler','')">En alquiler</button>
+  <div class="filtro-sep" aria-hidden="true"></div>
+  <button class="filtro-btn" onclick="filtroRapido(this,'','casa')">Casas</button>
+  <button class="filtro-btn" onclick="filtroRapido(this,'','departamento')">Departamentos</button>
+  <button class="filtro-btn" onclick="filtroRapido(this,'','ph')">PH</button>
+  <button class="filtro-btn" onclick="filtroRapido(this,'','local')">Locales</button>
+  <div class="filtros-derecha">
+    <span class="filtros-resultado" id="filtros-resultado" aria-live="polite"></span>
+    <select class="ordenar-select" id="ordenar" onchange="ordenarCards()" aria-label="Ordenar propiedades">
+      <option value="">Ordenar por…</option>
+      <option value="asc">Precio: menor a mayor</option>
+      <option value="desc">Precio: mayor a menor</option>
+    </select>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- PROPIEDADES -->
+<section class="section" id="propiedades" aria-labelledby="props-titulo">
+  <div class="section-header">
+    <div>
+      <p class="section-eyebrow">Propiedades destacadas</p>
+      <h2 class="section-title" id="props-titulo">Encontrá el espacio que buscás</h2>
+    </div>
+    <a href="#" class="ver-todos">Ver todas las propiedades →</a>
+  </div>
+
+  <div class="props-grid" id="props-grid">
+
+    <!-- skeletons (se reemplazan con JS) -->
+    <div class="prop-skeleton grande fade-up" id="skel-1" style="grid-column:span 2">
+      <div class="skeleton-img"></div>
+      <div class="skeleton-body"><div class="skeleton-line w40"></div><div class="skeleton-line w80"></div><div class="skeleton-line w60"></div></div>
+    </div>
+    <div class="prop-skeleton fade-up" id="skel-2"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line w40"></div><div class="skeleton-line w80"></div><div class="skeleton-line w60"></div></div></div>
+    <div class="prop-skeleton fade-up" id="skel-3"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line w40"></div><div class="skeleton-line w80"></div><div class="skeleton-line w60"></div></div></div>
+    <div class="prop-skeleton fade-up" id="skel-4"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line w40"></div><div class="skeleton-line w80"></div><div class="skeleton-line w60"></div></div></div>
+    <div class="prop-skeleton fade-up" id="skel-5"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line w40"></div><div class="skeleton-line w80"></div><div class="skeleton-line w60"></div></div></div>
+
+    <div class="props-empty" id="props-empty" aria-live="polite">
+      <p style="font-size:2rem">🔍</p>
+      <p><strong>Sin resultados</strong></p>
+      <p>Probá con otros filtros o <a href="#contacto" style="color:#C9A96E">consultanos directamente</a>.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- TESTIMONIOS -->
+<section class="section" id="testimonios" aria-labelledby="testi-titulo" style="background:var(--fondo2)">
+  <div class="section-header">
+    <div>
+      <p class="section-eyebrow">Testimonios</p>
+      <h2 class="section-title" id="testi-titulo">Lo que dicen nuestros clientes</h2>
+    </div>
+  </div>
+  <div class="testimonios-grid">
+    <div class="testi-card fade-up">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-texto">"Excelente atención de principio a fin. Vendimos nuestro departamento en menos de 3 semanas y al precio que esperábamos. Muy profesionales y siempre disponibles."</p>
+      <div class="testi-autor">
+        <div class="testi-avatar">👩</div>
+        <div><p class="testi-nombre">Valeria Moreno</p><p class="testi-lugar">Vendedora · Palermo, CABA</p></div>
+      </div>
+    </div>
+    <div class="testi-card fade-up">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-texto">"Encontrar casa en Nordelta parecía imposible con nuestro presupuesto. El equipo de Altamira entendió exactamente lo que buscábamos y en dos meses teníamos las llaves."</p>
+      <div class="testi-autor">
+        <div class="testi-avatar">👨</div>
+        <div><p class="testi-nombre">Martín y Lucía Fernández</p><p class="testi-lugar">Compradores · Nordelta, Tigre</p></div>
+      </div>
+    </div>
+    <div class="testi-card fade-up">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-texto">"Tercera vez que trabajamos con Altamira. Les confiamos la administración de dos propiedades y nunca tuvimos un problema. La tasación fue exacta y el proceso de alquiler fue impecable."</p>
+      <div class="testi-autor">
+        <div class="testi-avatar">👩</div>
+        <div><p class="testi-nombre">Carolina Vidal</p><p class="testi-lugar">Inversora · Recoleta, CABA</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="section" id="servicios" aria-labelledby="serv-titulo">
+  <div class="section-header">
+    <div>
+      <p class="section-eyebrow">Nuestros servicios</p>
+      <h2 class="section-title" id="serv-titulo">Todo lo que necesitás en un solo lugar</h2>
+    </div>
+  </div>
+  <div class="servicios-grid">
+    <div class="serv-card fade-up"><span class="serv-icono">🏠</span><h3>Compra y venta</h3><p>Asesoramiento integral en cada etapa. Encontramos el comprador ideal o la propiedad perfecta para vos.</p></div>
+    <div class="serv-card fade-up"><span class="serv-icono">📋</span><h3>Alquileres</h3><p>Gestión completa: selección de inquilinos, contratos, garantías y seguimiento durante toda la locación.</p></div>
+    <div class="serv-card fade-up"><span class="serv-icono">📊</span><h3>Tasaciones</h3><p>Valuaciones precisas basadas en datos reales del mercado. Sin costo, sin compromiso.</p></div>
+    <div class="serv-card fade-up"><span class="serv-icono">⚖️</span><h3>Asesoría legal</h3><p>Acompañamiento jurídico en escrituras, boletos y contratos. Operaciones seguras de principio a fin.</p></div>
+  </div>
+</section>
+
+<!-- TASACIÓN CTA -->
+<section class="tasacion-section" id="tasacion" aria-labelledby="tasacion-titulo">
+  <div class="tasacion-deco" aria-hidden="true"></div>
+  <div>
+    <p class="tasacion-eyebrow">Tasación gratuita</p>
+    <h2 id="tasacion-titulo">¿Cuánto vale <em>tu propiedad</em>?</h2>
+    <p style="margin-top:1rem">Nuestros tasadores certificados analizan tu inmueble y te entregan una valuación profesional sin costo y sin compromiso. Resultados en 48 horas.</p>
+  </div>
+  <form class="tasacion-form" aria-label="Formulario de tasación" onsubmit="return false">
+    <div class="form-row">
+      <div class="form-group"><label for="t-nombre">Nombre</label><input type="text" id="t-nombre" placeholder="Tu nombre" autocomplete="given-name"></div>
+      <div class="form-group"><label for="t-tel">Teléfono</label><input type="tel" id="t-tel" placeholder="Tu WhatsApp" autocomplete="tel"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label for="t-tipo">Tipo</label><select id="t-tipo"><option value="">Seleccioná</option><option>Departamento</option><option>Casa</option><option>PH</option><option>Local</option><option>Terreno</option></select></div>
+      <div class="form-group"><label for="t-zona">Zona</label><input type="text" id="t-zona" placeholder="Barrio o localidad"></div>
+    </div>
+    <button type="submit" class="form-submit"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polyline points="22 2 15 22 11 13 2 9 22 2"/></svg>Solicitar tasación gratuita</button>
+    <p style="font-size:11px;color:rgba(250,250,248,0.35);text-align:center">Sin costo · Sin compromiso · Respuesta en 48 hs</p>
+  </form>
+</section>
+
+<!-- NOSOTROS -->
+<section class="section" id="nosotros" aria-labelledby="nos-titulo">
+  <div class="nosotros-grid">
+    <div class="fade-up">
+      <p class="section-eyebrow">Quiénes somos</p>
+      <h2 class="section-title" id="nos-titulo">20 años construyendo confianza</h2>
+      <p style="margin-top:1.25rem;font-size:15px;color:#6B6B6B;font-weight:300;line-height:1.85;max-width:440px">Altamira Propiedades nació en 2004 con una convicción simple: cada operación inmobiliaria debe ser transparente, eficiente y justa. Hoy somos un equipo de 30 profesionales especializados en el mercado residencial y comercial argentino.</p>
+      <p style="margin-top:1rem;font-size:15px;color:#6B6B6B;font-weight:300;line-height:1.85;max-width:440px">Trabajamos con tecnología de última generación, pero sin perder el trato humano que nos distingue.</p>
+    </div>
+    <div class="nosotros-stats fade-up">
+      <div class="nos-stat light"><p class="nos-num-light">30</p><p class="nos-lbl-light">Profesionales</p></div>
+      <div class="nos-stat dark"><p class="nos-num-dark">4+</p><p class="nos-lbl-dark">Sucursales</p></div>
+      <div class="nos-stat tono"><p class="nos-num-light">98%</p><p class="nos-lbl-light">Satisfacción</p></div>
+      <div class="nos-stat light"><p class="nos-num-light">24hs</p><p class="nos-lbl-light">Respuesta</p></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTACTO -->
+<section class="contacto-section" id="contacto" aria-labelledby="contacto-titulo">
+  <div class="fade-up">
+    <p class="section-eyebrow">Contacto</p>
+    <h2 class="contacto-titulo" id="contacto-titulo">Hablemos de tu próxima operación</h2>
+    <p class="contacto-sub">Nuestros asesores están disponibles para responder todas tus consultas. Sin presión, sin compromisos.</p>
+    <div class="contacto-links">
+      <a href="https://wa.me/5491100000000?text=Hola%2C%20me%20interesa%20una%20propiedad" class="contacto-link" target="_blank" rel="noopener"><div class="cl-icon">💬</div><div class="cl-texto"><span class="cl-label">WhatsApp</span><span class="cl-val">Respuesta en minutos</span></div><span class="cl-arrow">→</span></a>
+      <a href="mailto:info@altamirapropiedades.com.ar" class="contacto-link"><div class="cl-icon">✉️</div><div class="cl-texto"><span class="cl-label">Email</span><span class="cl-val">info@altamirapropiedades.com.ar</span></div><span class="cl-arrow">→</span></a>
+      <a href="tel:+541148000000" class="contacto-link"><div class="cl-icon">📞</div><div class="cl-texto"><span class="cl-label">Teléfono</span><span class="cl-val">+54 11 4800-0000</span></div><span class="cl-arrow">→</span></a>
+      <a href="https://maps.google.com" class="contacto-link" target="_blank" rel="noopener"><div class="cl-icon">📍</div><div class="cl-texto"><span class="cl-label">Oficina central</span><span class="cl-val">Av. Libertador 1234, Piso 8 · CABA</span></div><span class="cl-arrow">→</span></a>
+    </div>
+  </div>
+  <div class="contacto-form-box fade-up">
+    <p class="contacto-form-titulo">Dejanos tu consulta</p>
+    <form class="contacto-form" onsubmit="return false" aria-label="Formulario de contacto">
+      <div class="cf-row">
+        <div class="cf-group"><label for="c-nombre">Nombre</label><input type="text" id="c-nombre" placeholder="Tu nombre" autocomplete="given-name"></div>
+        <div class="cf-group"><label for="c-tel">Teléfono</label><input type="tel" id="c-tel" placeholder="WhatsApp" autocomplete="tel"></div>
+      </div>
+      <div class="cf-group"><label for="c-asunto">¿En qué te podemos ayudar?</label><select id="c-asunto"><option value="">Seleccioná</option><option>Quiero comprar</option><option>Quiero vender</option><option>Quiero alquilar</option><option>Solicitar tasación</option><option>Otro</option></select></div>
+      <div class="cf-group"><label for="c-msg">Mensaje (opcional)</label><textarea id="c-msg" rows="3" placeholder="Contanos más sobre lo que buscás…"></textarea></div>
+      <button type="submit" class="cf-submit">Enviar consulta →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">Altamira Propiedades</a>
+  <p>© 2025 Altamira Propiedades · Matrícula CUCICBA 7821</p>
+  <ul class="footer-links"><li><a href="#">Privacidad</a></li><li><a href="#">Términos</a></li><li><a href="#">Sitemap</a></li></ul>
+</footer>
+
+<!-- FULLSCREEN OVERLAY -->
+<div class="fullscreen-overlay" id="fsOverlay" role="dialog" aria-modal="true" aria-label="Imagen en pantalla completa" aria-hidden="true">
+  <img src="" alt="" id="fsImg">
+  <button class="fullscreen-close" id="fsClose" aria-label="Cerrar pantalla completa">✕</button>
+  <button class="fullscreen-btn prev" id="fsPrev" aria-label="Foto anterior">‹</button>
+  <button class="fullscreen-btn next" id="fsNext" aria-label="Foto siguiente">›</button>
+  <span class="fullscreen-counter" id="fsCounter"></span>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitulo" aria-hidden="true">
+  <div class="modal-box">
+    <div class="modal-galeria" id="modalGaleria">
+      <div class="modal-galeria-track" id="modalTrack"></div>
+      <button class="modal-galeria-btn prev" id="modalPrev" aria-label="Foto anterior">‹</button>
+      <button class="modal-galeria-btn next" id="modalNext" aria-label="Foto siguiente">›</button>
+      <span class="modal-galeria-counter" id="modalCounter" aria-live="polite"></span>
+      <div class="modal-miniaturas" id="modalMiniaturas"></div>
+      <button class="modal-close" id="modalClose" aria-label="Cerrar">✕</button>
+    </div>
+
+    <div class="modal-contenido">
+      <!-- info izquierda -->
+      <div>
+        <p class="modal-badge-tipo" id="modalBadge"></p>
+        <h2 class="modal-titulo" id="modalTitulo"></h2>
+        <p class="modal-ubicacion"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span id="modalZona"></span></p>
+        <div class="modal-atributos-row" id="modalAtributos"></div>
+        <p class="modal-desc-titulo">Descripción</p>
+        <p class="modal-desc" id="modalDesc"></p>
+        <p class="modal-desc-titulo">Amenities</p>
+        <div class="modal-amenities" id="modalAmenities"></div>
+
+        <!-- mapa -->
+        <p class="modal-desc-titulo" style="margin-bottom:.75rem">Ubicación</p>
+        <div class="modal-mapa-wrap">
+          <iframe id="modalMapa" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa de ubicación" aria-label="Mapa de ubicación de la propiedad"></iframe>
+        </div>
+
+        <!-- formulario de consulta por la propiedad -->
+        <p class="modal-form-titulo">Consultar por esta propiedad</p>
+        <form class="modal-form" id="modalForm" onsubmit="return false" aria-label="Consulta por la propiedad">
+          <input type="text" placeholder="Tu nombre" id="mf-nombre" autocomplete="given-name">
+          <input type="tel" placeholder="Tu WhatsApp" id="mf-tel" autocomplete="tel">
+          <textarea rows="2" placeholder="¿Qué querés saber?" id="mf-msg"></textarea>
+          <button type="submit" class="modal-form-submit" id="mf-submit">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polyline points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Enviar consulta
+          </button>
+        </form>
+      </div>
+
+      <!-- panel derecho -->
+      <div class="modal-panel">
+        <div class="modal-precio-box">
+          <p class="modal-precio-lbl" id="modalPrecioLbl"></p>
+          <p class="modal-precio-val" id="modalPrecioVal"></p>
+          <p class="modal-precio-sub" id="modalPrecioSub"></p>
+        </div>
+        <a class="modal-wa-btn" id="modalWaBtn" href="#" target="_blank" rel="noopener">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Consultar por WhatsApp
+        </a>
+        <a class="modal-tel-btn" href="tel:+541148000000">📞 Llamar ahora</a>
+        <button class="modal-compartir" id="modalCompartir">🔗 Copiar enlace</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ══════ DATA ══════ */
+const PROPS = {
+  1:{
+    titulo:'Casa con pileta en Nordelta',tipo:'Casa · Venta',op:'venta',tipoCat:'casa',
+    zona:'nordelta tigre',zonaDisplay:'Nordelta, Tigre · Buenos Aires',
+    precio:'USD 485.000',precioNum:485000,precioLbl:'Precio de venta',precioSub:'Precio en dólares billete',
+    desc:'Amplia residencia de estilo moderno ubicada en uno de los barrios más exclusivos del GBA. Cuenta con jardín privado de 600 m², pileta climatizada con deck de madera y espacios de doble altura. Cocina integrada al living con terminaciones premium. Garaje cerrado para 2 vehículos. Barrio cerrado con seguridad 24hs y acceso controlado.',
+    attrs:[{i:'🛏',v:'4',l:'Dormitorios'},{i:'🚿',v:'3',l:'Baños'},{i:'📐',v:'320 m²',l:'Sup. total'},{i:'🌿',v:'600 m²',l:'Jardín'},{i:'🚗',v:'2',l:'Cocheras'}],
+    amenities:['Pileta climatizada','Jardín privado','Seguridad 24hs','Quincho','Luminoso','A estrenar'],
+    mapaQ:'Nordelta, Tigre, Buenos Aires',nuevo:true,reducido:false,
+    fotos:[
+      'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1200&auto=format&fit=crop&q=85',
+      'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&auto=format&fit=crop&q=85',
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&auto=format&fit=crop&q=85',
+      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1200&auto=format&fit=crop&q=85',
+      'https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=1200&auto=format&fit=crop&q=85',
+      'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1200&auto=format&fit=crop&q=85',
+    ],
+    waMsg:'Hola, me interesa la Casa con pileta en Nordelta (USD 485.000). ¿Podemos coordinar una visita?'
+  },
+  2:{
+    titulo:'2 ambientes con balcón en Palermo',tipo:'Departamento · Venta',op:'venta',tipoCat:'departamento',
+    zona:'palermo caba',zonaDisplay:'Palermo, CABA',
+    precio:'USD 128.000',precioNum:128000,precioLbl:'Precio de venta',precioSub:'Precio en dólares billete',
+    desc:'Moderno departamento de 2 ambientes en el corazón de Palermo. Planta baja alta con balcón corrido al frente, cocina americana integrada con mesada de cuarzo y baño completo con terminaciones de primera. Edificio con amenities. A metros del Parque Las Heras y con excelente acceso a transporte.',
+    attrs:[{i:'🛏',v:'1',l:'Dormitorio'},{i:'🚿',v:'1',l:'Baño'},{i:'📐',v:'58 m²',l:'Sup. total'},{i:'🏢',v:'3°',l:'Piso'}],
+    amenities:['Balcón','Amenities','Lavadero','SUM','Bici-estacionamiento','Expensas bajas'],
+    mapaQ:'Palermo, Buenos Aires, Argentina',nuevo:false,reducido:false,
+    fotos:[
+      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&auto=format&fit=crop&q=85',
+      'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200&auto=format&fit=crop&q=85',
+      'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&auto=format&fit=crop&q=85',
+      'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1200&auto=format&fit=crop&q=85',
+      'https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=1200&auto=format&fit=crop&q=85',
+    ],
+    waMsg:'Hola, me interesa el depto 2 ambientes en Palermo (USD 128.000). ¿Podemos coordinar una visita?'
+  },
+  3:{
+    titulo:'PH con terraza propia en Belgrano',tipo:'PH · Alquiler',op:'alquiler',tipoCat:'ph',
+    zona:'belgrano caba',zonaDisplay:'Belgrano, CABA',
+    precio:'$950.000/mes',precioNum:950000,precioLbl:'Alquiler mensual',precioSub:'Más expensas. Ajuste anual.',
+    desc:'Espacioso PH de 3 dormitorios con terraza exclusiva de 60 m² ideal para entretenimiento. Planta baja con jardín de ingreso privado y planta alta con dormitorios. Living de doble altura con ventanales. Cocina independiente equipada. Zona residencial de Belgrano R. A 5 cuadras del subte D.',
+    attrs:[{i:'🛏',v:'3',l:'Dormitorios'},{i:'🚿',v:'2',l:'Baños'},{i:'📐',v:'145 m²',l:'Sup. total'},{i:'🌿',v:'60 m²',l:'Terraza'}],
+    amenities:['Terraza exclusiva','Jardín','Doble altura','Zona tranquila','Cerca del subte','Luminoso'],
+    mapaQ:'Belgrano, Buenos Aires, Argentina',nuevo:false,reducido:true,
+    fotos:[
+      'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1200&auto=format&fit=crop&q=85',
+      'https://images.unsplash.com/photo-1505873242700-f289a29e1e0f?w=1200&auto=format&fit=crop&q=85',
+      'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1200&auto=format&fit=crop&q=85',
+      'https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?w=1200&auto=format&fit=crop&q=85',
+      'https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=1200&auto=format&fit=crop&q=85',
+      'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1200&auto=format&fit=crop&q=85',
+      'https://images.unsplash.com/photo-1571508601891-ca5e7a713859?w=1200&auto=format&fit=crop&q=85',
+    ],
+    waMsg:'Hola, me interesa el PH con terraza en Belgrano ($950.000/mes). ¿Podemos coordinar una visita?'
+  },
+  4:{
+    titulo:'3 ambientes con vista al parque — Recoleta',tipo:'Departamento · Venta',op:'venta',tipoCat:'departamento',
+    zona:'recoleta caba',zonaDisplay:'Recoleta, CABA',
+    precio:'USD 210.000',precioNum:210000,precioLbl:'Precio de venta',precioSub:'Precio en dólares billete',
+    desc:'Elegante departamento de 3 ambientes en Recoleta. Vista directa al Parque Thays desde living y dormitorio principal. Techos altos, pisos de parquet y detalles de época en perfectas condiciones. Totalmente refaccionado con cocina y baños a nuevo. Edificio con portería 24hs y cochera opcional.',
+    attrs:[{i:'🛏',v:'2',l:'Dormitorios'},{i:'🚿',v:'2',l:'Baños'},{i:'📐',v:'95 m²',l:'Sup. total'},{i:'🏛',v:'Clásico',l:'Estilo'}],
+    amenities:['Vista al parque','Portería 24hs','Techos altos','Parquet','Reciclado','Cochera opcional'],
+    mapaQ:'Recoleta, Buenos Aires, Argentina',nuevo:false,reducido:false,
+    fotos:[
+      'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=1200&auto=format&fit=crop&q=85',
+      'https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=1200&auto=format&fit=crop&q=85',
+      'https://images.unsplash.com/photo-1565182999561-18d7dc61c393?w=1200&auto=format&fit=crop&q=85',
+      'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&auto=format&fit=crop&q=85',
+    ],
+    waMsg:'Hola, me interesa el dpto 3 ambientes en Recoleta (USD 210.000). ¿Podemos hablar?'
+  },
+  5:{
+    titulo:'Local comercial — Corredor gastronómico San Telmo',tipo:'Local comercial · Alquiler',op:'alquiler',tipoCat:'local',
+    zona:'san telmo caba',zonaDisplay:'San Telmo, CABA',
+    precio:'$680.000/mes',precioNum:680000,precioLbl:'Alquiler mensual',precioSub:'Más expensas. Ajuste semestral.',
+    desc:'Local a estrenar sobre la calle Defensa en el corazón gastronómico de San Telmo. 80 m² cubiertos más 20 m² de patio. Frente de 6 metros con vidriera panorámica. Instalación trifásica, campana extractora y cámara frigorífica incluidas. Ideal para gastronomía, café o local de diseño. Alto tráfico peatonal.',
+    attrs:[{i:'📐',v:'80 m²',l:'Cubierto'},{i:'🌿',v:'20 m²',l:'Patio'},{i:'🚪',v:'6 m',l:'Frente'},{i:'⚡',v:'Trifásico',l:'Electricidad'}],
+    amenities:['A estrenar','Campana extractora','Cámara frigorífica','Alto tráfico','Patio','Vidriera panorámica'],
+    mapaQ:'San Telmo, Buenos Aires, Argentina',nuevo:true,reducido:false,
+    fotos:[
+      'https://images.unsplash.com/photo-1604014237800-1c9102c219da?w=1200&auto=format&fit=crop&q=85',
+      'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&auto=format&fit=crop&q=85',
+      'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&auto=format&fit=crop&q=85',
+      'https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=1200&auto=format&fit=crop&q=85',
+    ],
+    waMsg:'Hola, me interesa el local en San Telmo ($680.000/mes). ¿Podemos hablar?'
+  }
+};
+
+/* ══════ RENDER CARDS ══════ */
+function renderCards() {
+  const grid = document.getElementById('props-grid');
+  // quitar skeletons
+  document.querySelectorAll('[id^="skel-"]').forEach(s => s.remove());
+
+  const entries = Object.entries(PROPS);
+  entries.forEach(([id, p], idx) => {
+    const grande = id === '1';
+    const art = document.createElement('article');
+    art.className = 'prop-card fade-up' + (grande ? ' grande' : '');
+    art.dataset.id = id;
+    art.dataset.op = p.op;
+    art.dataset.tipo = p.tipoCat;
+    art.dataset.zona = p.zona;
+    art.dataset.precio = p.precioNum;
+    art.tabIndex = 0;
+    art.setAttribute('role','button');
+    art.setAttribute('aria-label', `Ver ${p.titulo} — ${p.precio}`);
+
+    const badges = `
+      <span class="prop-badge-extra">
+        ${p.nuevo ? '<span class="badge-extra nuevo">Nuevo</span>' : ''}
+        ${p.reducido ? '<span class="badge-extra reducido">Precio reducido</span>' : ''}
+        <span class="badge-extra op ${p.op === 'alquiler' ? 'alq' : ''}">${p.op === 'venta' ? 'Venta' : 'Alquiler'}</span>
+      </span>`;
+
+    const precioDisplay = p.precio.includes('/mes')
+      ? `${p.precio.replace('/mes','')} <span style="font-size:13px;font-weight:400;color:#6B6B6B">/mes</span>`
+      : p.precio;
+
+    const descCorta = grande
+      ? `<p style="font-size:14px;color:#6B6B6B;line-height:1.7;margin-bottom:1rem">${p.desc.slice(0,140)}…</p>` : '';
+
+    const attrsHTML = p.attrs.slice(0, grande ? 4 : 3)
+      .map(a => `<span class="prop-attr">${a.i} ${a.v}</span>`).join('');
+
+    art.innerHTML = `
+      <div class="prop-img">
+        <img src="${p.fotos[0]}" alt="${p.titulo}" loading="${idx < 2 ? 'eager' : 'lazy'}">
+        ${badges}
+        <button class="prop-fav" aria-label="Guardar en favoritos" onclick="event.stopPropagation()">♡</button>
+        <span class="prop-img-count">📷 ${p.fotos.length} foto${p.fotos.length > 1 ? 's' : ''}</span>
+      </div>
+      <div class="prop-body">
+        <p class="prop-tipo">${p.tipo}</p>
+        <p class="prop-precio">${precioDisplay}</p>
+        <p class="prop-nombre">${p.titulo}</p>
+        <p class="prop-zona"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${p.zonaDisplay}</p>
+        ${descCorta}
+        <div class="prop-atributos">${attrsHTML}</div>
+        <button class="prop-ver-btn" onclick="abrirModal(${id})">Ver propiedad →</button>
+      </div>`;
+
+    grid.insertBefore(art, document.getElementById('props-empty'));
+
+    // eventos
+    art.addEventListener('click', e => {
+      if (e.target.closest('.prop-fav') || e.target.closest('.prop-ver-btn')) return;
+      abrirModal(parseInt(id));
+    });
+    art.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrirModal(parseInt(id)); }
+    });
+  });
+
+  // favoritos
+  document.querySelectorAll('.prop-fav').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const on = btn.textContent.trim() === '♥';
+      btn.textContent = on ? '♡' : '♥';
+      btn.style.color = on ? '' : '#e53e3e';
+      btn.setAttribute('aria-label', on ? 'Guardar en favoritos' : 'Quitar de favoritos');
+    });
+  });
+
+  // fade observer
+  document.querySelectorAll('.fade-up:not(.visible)').forEach((el, i) => {
+    el.style.transitionDelay = (i % 4) * 0.08 + 's';
+    fadeObserver.observe(el);
+  });
+
+  aplicarFiltro('', '', '');
+}
+
+/* ══════ MODAL ══════ */
+let fotoActual = 0, fotosActuales = [], scrollY = 0, ultimoFoco = null;
+
+function abrirModal(id) {
+  const p = PROPS[id];
+  if (!p) return;
+
+  document.getElementById('modalBadge').textContent = p.tipo;
+  document.getElementById('modalTitulo').textContent = p.titulo;
+  document.getElementById('modalZona').textContent = p.zonaDisplay;
+  document.getElementById('modalDesc').textContent = p.desc;
+  document.getElementById('modalPrecioLbl').textContent = p.precioLbl;
+  document.getElementById('modalPrecioVal').textContent = p.precio;
+  document.getElementById('modalPrecioSub').textContent = p.precioSub;
+
+  document.getElementById('modalAtributos').innerHTML = p.attrs
+    .map(a => `<div class="modal-attr"><span class="modal-attr-icon">${a.i}</span><span class="modal-attr-val">${a.v}</span><span class="modal-attr-lbl">${a.l}</span></div>`)
+    .join('');
+  document.getElementById('modalAmenities').innerHTML = p.amenities
+    .map(a => `<span class="amenity-tag">✓ ${a}</span>`).join('');
+
+  const tel = '5491100000000';
+  document.getElementById('modalWaBtn').href = `https://wa.me/${tel}?text=${encodeURIComponent(p.waMsg)}`;
+
+  // mapa embed
+  const q = encodeURIComponent(p.mapaQ);
+  document.getElementById('modalMapa').src =
+    `https://www.google.com/maps/embed/v1/place?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&q=${q}&zoom=14`;
+
+  // form submit → WA
+  document.getElementById('mf-submit').onclick = () => {
+    const nombre = document.getElementById('mf-nombre').value.trim() || 'un interesado';
+    const msg = document.getElementById('mf-msg').value.trim();
+    const texto = `Hola, soy ${nombre}. Me interesa: "${p.titulo}". ${msg}`;
+    window.open(`https://wa.me/${tel}?text=${encodeURIComponent(texto)}`, '_blank');
+  };
+
+  // galería
+  fotosActuales = p.fotos; fotoActual = 0; renderGaleria();
+
+  // compartir
+  document.getElementById('modalCompartir').onclick = () => {
+    navigator.clipboard.writeText(window.location.href + '#prop-' + id).then(() => {
+      const btn = document.getElementById('modalCompartir');
+      const orig = btn.textContent;
+      btn.textContent = '✓ Enlace copiado';
+      setTimeout(() => btn.textContent = orig, 2000);
+    }).catch(() => {});
+  };
+
+  const overlay = document.getElementById('modalOverlay');
+  overlay.removeAttribute('aria-hidden');
+  overlay.classList.add('abierto');
+  scrollY = window.scrollY;
+  document.body.style.overflow = 'hidden';
+  document.body.style.position = 'fixed';
+  document.body.style.top = `-${scrollY}px`;
+  document.body.style.width = '100%';
+  ultimoFoco = document.activeElement;
+  // scroll modal contenido al top
+  const cont = overlay.querySelector('.modal-contenido');
+  if (cont) cont.scrollTop = 0;
+  document.getElementById('modalClose').focus();
+}
+
+function cerrarModal() {
+  const overlay = document.getElementById('modalOverlay');
+  overlay.classList.remove('abierto');
+  overlay.setAttribute('aria-hidden','true');
+  document.body.style.cssText = '';
+  window.scrollTo(0, scrollY);
+  if (ultimoFoco) ultimoFoco.focus();
+}
+
+function renderGaleria() {
+  const track = document.getElementById('modalTrack');
+  track.innerHTML = fotosActuales.map((src, i) =>
+    `<img src="${src}" alt="Foto ${i+1}" loading="${i===0?'eager':'lazy'}" style="cursor:zoom-in" onclick="abrirFullscreen(${i})">`
+  ).join('');
+  track.style.transform = 'translateX(0)';
+  document.getElementById('modalMiniaturas').innerHTML = fotosActuales.map((src, i) =>
+    `<button class="modal-miniatura${i===0?' activa':''}" onclick="irFoto(${i})" aria-label="Ver foto ${i+1}"><img src="${src}" alt=""></button>`
+  ).join('');
+  actualizarCounter();
+}
+
+function irFoto(idx) {
+  fotoActual = Math.max(0, Math.min(idx, fotosActuales.length - 1));
+  document.getElementById('modalTrack').style.transform = `translateX(-${fotoActual * 100}%)`;
+  document.querySelectorAll('.modal-miniatura').forEach((m, i) => m.classList.toggle('activa', i === fotoActual));
+  actualizarCounter();
+}
+function actualizarCounter() {
+  document.getElementById('modalCounter').textContent = `${fotoActual + 1} / ${fotosActuales.length}`;
+}
+
+document.getElementById('modalPrev').onclick = () => irFoto(fotoActual - 1);
+document.getElementById('modalNext').onclick = () => irFoto(fotoActual + 1);
+document.getElementById('modalClose').onclick = cerrarModal;
+document.getElementById('modalOverlay').onclick = e => { if (e.target === document.getElementById('modalOverlay')) cerrarModal(); };
+
+/* swipe */
+(()=>{
+  const g = document.getElementById('modalGaleria'); let sx = 0;
+  g.addEventListener('touchstart', e => sx = e.touches[0].clientX, {passive:true});
+  g.addEventListener('touchend', e => { const d = sx - e.changedTouches[0].clientX; if (Math.abs(d)>50) irFoto(d>0?fotoActual+1:fotoActual-1); }, {passive:true});
+})();
+
+/* ══════ FULLSCREEN ══════ */
+let fsIdx = 0, fsFotos = [];
+
+function abrirFullscreen(idx) {
+  fsFotos = fotosActuales; fsIdx = idx;
+  const fs = document.getElementById('fsOverlay');
+  document.getElementById('fsImg').src = fsFotos[fsIdx];
+  document.getElementById('fsCounter').textContent = `${fsIdx+1} / ${fsFotos.length}`;
+  fs.removeAttribute('aria-hidden');
+  fs.classList.add('abierto');
+  document.getElementById('fsClose').focus();
+}
+function cerrarFullscreen() {
+  const fs = document.getElementById('fsOverlay');
+  fs.classList.remove('abierto');
+  fs.setAttribute('aria-hidden','true');
+}
+function irFotoFs(dir) {
+  fsIdx = Math.max(0, Math.min(fsIdx + dir, fsFotos.length - 1));
+  document.getElementById('fsImg').src = fsFotos[fsIdx];
+  document.getElementById('fsCounter').textContent = `${fsIdx+1} / ${fsFotos.length}`;
+}
+document.getElementById('fsClose').onclick = cerrarFullscreen;
+document.getElementById('fsPrev').onclick = () => irFotoFs(-1);
+document.getElementById('fsNext').onclick = () => irFotoFs(1);
+document.getElementById('fsOverlay').onclick = e => { if (e.target === document.getElementById('fsOverlay')) cerrarFullscreen(); };
+
+/* ══════ FILTROS ══════ */
+function filtrar() {
+  const op   = document.getElementById('f-operacion').value;
+  const tipo = document.getElementById('f-tipo').value;
+  const zona = document.getElementById('f-zona').value.toLowerCase().trim();
+  document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('activo'));
+  document.querySelector('.filtro-btn').classList.add('activo');
+  aplicarFiltro(op, tipo, zona);
+}
+
+function filtroRapido(btn, op, tipo) {
+  document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('activo'));
+  btn.classList.add('activo');
+  document.getElementById('f-operacion').value = op;
+  document.getElementById('f-tipo').value = tipo;
+  document.getElementById('f-zona').value = '';
+  aplicarFiltro(op, tipo, '');
+}
+
+function aplicarFiltro(op, tipo, zona) {
+  const cards = document.querySelectorAll('.prop-card[data-id]');
+  let visibles = 0;
+  cards.forEach(card => {
+    const ok = (!op || card.dataset.op === op)
+            && (!tipo || card.dataset.tipo === tipo)
+            && (!zona || card.dataset.zona.includes(zona));
+    card.style.display = ok ? '' : 'none';
+    if (ok) visibles++;
+  });
+  // card grande: restaurar grid-column
+  const grande = document.querySelector('.prop-card.grande');
+  if (grande && grande.style.display !== 'none') grande.style.gridColumn = '';
+  document.getElementById('props-empty').classList.toggle('visible', visibles === 0);
+  const res = document.getElementById('filtros-resultado');
+  res.textContent = visibles > 0 ? `${visibles} propiedad${visibles !== 1?'es':''} encontrada${visibles !== 1?'s':''}` : '';
+}
+
+function ordenarCards() {
+  const dir = document.getElementById('ordenar').value;
+  if (!dir) return;
+  const grid = document.getElementById('props-grid');
+  const cards = [...grid.querySelectorAll('.prop-card[data-id]')];
+  cards.sort((a, b) => {
+    const pa = parseInt(a.dataset.precio), pb = parseInt(b.dataset.precio);
+    return dir === 'asc' ? pa - pb : pb - pa;
+  });
+  const empty = document.getElementById('props-empty');
+  cards.forEach(c => grid.insertBefore(c, empty));
+}
+
+/* ══════ TECLADO ══════ */
+document.addEventListener('keydown', e => {
+  // fullscreen
+  const fs = document.getElementById('fsOverlay');
+  if (fs.classList.contains('abierto')) {
+    if (e.key === 'Escape') cerrarFullscreen();
+    if (e.key === 'ArrowLeft') irFotoFs(-1);
+    if (e.key === 'ArrowRight') irFotoFs(1);
+    return;
+  }
+  // modal
+  const ov = document.getElementById('modalOverlay');
+  if (!ov.classList.contains('abierto')) return;
+  if (e.key === 'Escape') cerrarModal();
+  if (e.key === 'ArrowLeft') irFoto(fotoActual - 1);
+  if (e.key === 'ArrowRight') irFoto(fotoActual + 1);
+  if (e.key === 'Tab') {
+    const foc = ov.querySelectorAll('button:not([disabled]),a[href],input,select,textarea,[tabindex]:not([tabindex="-1"])');
+    const first = foc[0], last = foc[foc.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+});
+
+/* ══════ MENÚ MOBILE ══════ */
+const ham = document.getElementById('navHam');
+const mob = document.getElementById('navMobile');
+function cerrarMenu() {
+  ham.classList.remove('abierto');
+  mob.classList.remove('abierto');
+  mob.setAttribute('aria-hidden','true');
+  ham.setAttribute('aria-expanded','false');
+  document.body.style.overflow = '';
+}
+ham.addEventListener('click', () => {
+  const abierto = mob.classList.toggle('abierto');
+  ham.classList.toggle('abierto');
+  mob.setAttribute('aria-hidden', !abierto);
+  ham.setAttribute('aria-expanded', abierto);
+  document.body.style.overflow = abierto ? 'hidden' : '';
+});
+
+/* ══════ CONTADOR ANIMADO ══════ */
+const counterObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    const prefix = el.dataset.prefix || '';
+    if (isNaN(target)) return;
+    const dur = 1800, step = 16;
+    const inc = target / (dur / step);
+    let cur = 0;
+    const timer = setInterval(() => {
+      cur = Math.min(cur + inc, target);
+      el.textContent = prefix + '+' + Math.floor(cur).toLocaleString('es-AR') + suffix;
+      if (cur >= target) {
+        el.textContent = prefix + '+' + target.toLocaleString('es-AR') + suffix;
+        clearInterval(timer);
+      }
+    }, step);
+    counterObserver.unobserve(el);
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.stat-num[data-target]').forEach(el => counterObserver.observe(el));
+
+/* ══════ FADE-UP ══════ */
+const fadeObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+/* ══════ SCROLL SPY ══════ */
+const spySections = document.querySelectorAll('section[id]');
+const spyLinks = document.querySelectorAll('.nav-links a:not(.nav-cta)');
+const spy = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      spyLinks.forEach(a => a.classList.remove('activo'));
+      const a = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+      if (a) a.classList.add('activo');
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+spySections.forEach(s => spy.observe(s));
+
+document.querySelectorAll('.fade-up').forEach((el, i) => {
+  el.style.transitionDelay = (i % 4) * 0.08 + 's';
+  fadeObserver.observe(el);
+});
+
+/* ══════ INIT ══════ */
+// simular carga realista con skeletons
+setTimeout(renderCards, 900);
+</script>
+</body>
+</html>

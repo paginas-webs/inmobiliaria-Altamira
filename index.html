@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#1A1A1A">
+  <meta name="color-scheme" content="light">
   <title>Altamira Propiedades · Bienes Raíces</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%231A1A1A'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='52' font-weight='700' fill='%23C9A96E' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
   <meta name="description" content="Altamira Propiedades — Compra, venta y alquiler de inmuebles premium. Más de 20 años de experiencia.">
@@ -43,7 +44,13 @@
 
 <!-- HERO -->
 <section class="hero" aria-label="Inicio">
-  <div class="hero-bg" role="img" aria-label="Casa moderna con jardín"></div>
+  <div class="hero-bg-track" role="img" aria-label="Propiedades de Altamira">
+    <div class="hero-bg activa" style="background-image:url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&auto=format&fit=crop&q=80')"></div>
+    <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&auto=format&fit=crop&q=80')"></div>
+    <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1600&auto=format&fit=crop&q=80')"></div>
+    <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&auto=format&fit=crop&q=80')"></div>
+  </div>
+  <div class="hero-overlay" aria-hidden="true"></div>
   <p class="hero-eyebrow fade-up">Inmobiliaria de confianza · Desde 2004</p>
   <h1 class="fade-up">Tu próximo hogar<br><em>te está esperando.</em></h1>
   <p class="hero-sub fade-up">Más de 20 años conectando familias con las mejores propiedades. Venta, alquiler y asesoramiento en todo el país.</p>
@@ -792,6 +799,37 @@ document.querySelectorAll('.fade-up').forEach((el, i) => {
   el.style.transitionDelay = (i % 4) * 0.08 + 's';
   fadeObserver.observe(el);
 });
+
+/* ══════ HERO: ROTACIÓN AUTOMÁTICA ══════ */
+(function () {
+  const slides = document.querySelectorAll('.hero-bg');
+  if (slides.length < 2) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return; // si el usuario pidió menos movimiento, dejamos la primera fija
+
+  let idx = 0;
+  let timer = null;
+
+  function siguiente() {
+    slides[idx].classList.remove('activa');
+    idx = (idx + 1) % slides.length;
+    slides[idx].classList.add('activa');
+  }
+  function iniciar() {
+    if (timer) return;
+    timer = setInterval(siguiente, 6000);
+  }
+  function pausar() {
+    clearInterval(timer);
+    timer = null;
+  }
+
+  iniciar();
+  // pausa si el usuario cambia de pestaña (ahorra recursos, evita saltos raros al volver)
+  document.addEventListener('visibilitychange', () => {
+    document.hidden ? pausar() : iniciar();
+  });
+})();
 
 /* ══════ INIT ══════ */
 // simular carga realista con skeletons

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1A1A1A">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="noindex">
+  <title>Página no encontrada · Altamira Propiedades</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%231A1A1A'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='52' font-weight='700' fill='%23C9A96E' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="inmobiliaria.css">
+  <style>
+    .err-wrap{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;background:var(--negro);position:relative;overflow:hidden}
+    .err-wrap::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 30%,rgba(201,169,110,0.14),transparent 60%)}
+    .err-code{position:relative;font-family:'Playfair Display',serif;font-size:clamp(6rem,18vw,11rem);font-weight:700;line-height:1;color:var(--dorado);letter-spacing:-4px}
+    .err-titulo{position:relative;font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:600;color:var(--blanco);margin:.5rem 0 1rem}
+    .err-texto{position:relative;font-size:15px;font-weight:300;color:rgba(250,250,248,0.65);max-width:420px;line-height:1.8;margin-bottom:2.5rem}
+    .err-botones{position:relative;display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+    .err-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:999px;font-size:14px;font-weight:600;text-decoration:none;transition:var(--trans)}
+    .err-btn.primario{background:var(--dorado);color:var(--negro)}
+    .err-btn.primario:hover{background:var(--dorado-claro)}
+    .err-btn.secundario{border:1px solid rgba(250,250,248,0.3);color:var(--blanco)}
+    .err-btn.secundario:hover{border-color:var(--dorado);color:var(--dorado)}
+  </style>
+</head>
+<body>
+
+<section class="err-wrap">
+  <p class="err-code">404</p>
+  <h1 class="err-titulo">Esta página no la encontramos</h1>
+  <p class="err-texto">Puede que el enlace esté roto o que la propiedad que buscabas ya no esté disponible. Volvé al inicio para seguir buscando.</p>
+  <div class="err-botones">
+    <a href="/" class="err-btn primario">Volver al inicio</a>
+    <a href="/#propiedades" class="err-btn secundario">Ver propiedades →</a>
+  </div>
+</section>
+
+</body>
+</html>

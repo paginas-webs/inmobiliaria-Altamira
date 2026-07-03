@@ -8,6 +8,42 @@
   <title>Altamira Propiedades · Bienes Raíces</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%231A1A1A'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='52' font-weight='700' fill='%23C9A96E' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
   <meta name="description" content="Altamira Propiedades — Compra, venta y alquiler de inmuebles premium. Más de 20 años de experiencia.">
+  <link rel="canonical" href="https://www.altamirapropiedades.com.ar/">
+
+  <!-- Open Graph / previews en WhatsApp, Instagram, Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Altamira Propiedades">
+  <meta property="og:title" content="Altamira Propiedades · Bienes Raíces">
+  <meta property="og:description" content="Compra, venta y alquiler de inmuebles premium en Buenos Aires. Más de 20 años de experiencia.">
+  <meta property="og:url" content="https://www.altamirapropiedades.com.ar/">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&auto=format&fit=crop&q=80">
+  <meta property="og:locale" content="es_AR">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Altamira Propiedades · Bienes Raíces">
+  <meta name="twitter:description" content="Compra, venta y alquiler de inmuebles premium en Buenos Aires. Más de 20 años de experiencia.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&auto=format&fit=crop&q=80">
+
+  <!-- Datos estructurados para Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "RealEstateAgent",
+    "name": "Altamira Propiedades",
+    "image": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&auto=format&fit=crop&q=80",
+    "url": "https://www.altamirapropiedades.com.ar/",
+    "telephone": "+54-11-4800-0000",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Av. Libertador 1234, Piso 8",
+      "addressLocality": "Ciudad Autónoma de Buenos Aires",
+      "addressRegion": "CABA",
+      "addressCountry": "AR"
+    }
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -21,16 +57,22 @@
     <span class="nav-logo-name">Altamira</span>
     <span class="nav-logo-tag">Propiedades</span>
   </a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#propiedades" class="activo">Propiedades</a></li>
-    <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#tasacion">Tasación</a></li>
-    <li><a href="#nosotros">Nosotros</a></li>
-    <li><a href="#contacto" class="nav-cta">Consultar →</a></li>
-  </ul>
-  <button class="nav-ham" id="navHam" aria-label="Abrir menú" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
+  <div class="nav-right">
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#propiedades" class="activo">Propiedades</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#tasacion">Tasación</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#contacto" class="nav-cta">Consultar →</a></li>
+    </ul>
+    <button class="nav-guardadas-btn" id="navGuardadasBtn" aria-label="Ver propiedades guardadas" aria-haspopup="dialog">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <span class="nav-guardadas-count" id="navGuardadasCount" hidden>0</span>
+    </button>
+    <button class="nav-ham" id="navHam" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <!-- MENÚ MOBILE -->
@@ -44,11 +86,11 @@
 
 <!-- HERO -->
 <section class="hero" aria-label="Inicio">
-  <div class="hero-bg-track" role="img" aria-label="Propiedades de Altamira">
+  <div class="hero-bg-track" aria-hidden="true">
     <div class="hero-bg activa" style="background-image:url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&auto=format&fit=crop&q=80')"></div>
-    <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&auto=format&fit=crop&q=80')"></div>
-    <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1600&auto=format&fit=crop&q=80')"></div>
-    <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&auto=format&fit=crop&q=80')"></div>
+    <div class="hero-bg" data-src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&auto=format&fit=crop&q=80"></div>
+    <div class="hero-bg" data-src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1600&auto=format&fit=crop&q=80"></div>
+    <div class="hero-bg" data-src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&auto=format&fit=crop&q=80"></div>
   </div>
   <div class="hero-overlay" aria-hidden="true"></div>
   <p class="hero-eyebrow fade-up">Inmobiliaria de confianza · Desde 2004</p>
@@ -212,8 +254,8 @@
   </div>
   <form class="tasacion-form" aria-label="Formulario de tasación" onsubmit="return false">
     <div class="form-row">
-      <div class="form-group"><label for="t-nombre">Nombre</label><input type="text" id="t-nombre" placeholder="Tu nombre" autocomplete="given-name"></div>
-      <div class="form-group"><label for="t-tel">Teléfono</label><input type="tel" id="t-tel" placeholder="Tu WhatsApp" autocomplete="tel"></div>
+      <div class="form-group"><label for="t-nombre">Nombre</label><input type="text" id="t-nombre" placeholder="Tu nombre" autocomplete="given-name" required></div>
+      <div class="form-group"><label for="t-tel">Teléfono</label><input type="tel" id="t-tel" placeholder="Tu WhatsApp" autocomplete="tel" required></div>
     </div>
     <div class="form-row">
       <div class="form-group"><label for="t-tipo">Tipo</label><select id="t-tipo"><option value="">Seleccioná</option><option>Departamento</option><option>Casa</option><option>PH</option><option>Local</option><option>Terreno</option></select></div>
@@ -254,15 +296,15 @@
       <a href="https://wa.me/5491100000000?text=Hola%2C%20me%20interesa%20una%20propiedad" class="contacto-link" target="_blank" rel="noopener"><div class="cl-icon">💬</div><div class="cl-texto"><span class="cl-label">WhatsApp</span><span class="cl-val">Respuesta en minutos</span></div><span class="cl-arrow">→</span></a>
       <a href="mailto:info@altamirapropiedades.com.ar" class="contacto-link"><div class="cl-icon">✉️</div><div class="cl-texto"><span class="cl-label">Email</span><span class="cl-val">info@altamirapropiedades.com.ar</span></div><span class="cl-arrow">→</span></a>
       <a href="tel:+541148000000" class="contacto-link"><div class="cl-icon">📞</div><div class="cl-texto"><span class="cl-label">Teléfono</span><span class="cl-val">+54 11 4800-0000</span></div><span class="cl-arrow">→</span></a>
-      <a href="https://maps.google.com" class="contacto-link" target="_blank" rel="noopener"><div class="cl-icon">📍</div><div class="cl-texto"><span class="cl-label">Oficina central</span><span class="cl-val">Av. Libertador 1234, Piso 8 · CABA</span></div><span class="cl-arrow">→</span></a>
+      <a href="https://www.google.com/maps?q=Av.+Libertador+1234,+CABA" class="contacto-link" target="_blank" rel="noopener"><div class="cl-icon">📍</div><div class="cl-texto"><span class="cl-label">Oficina central</span><span class="cl-val">Av. Libertador 1234, Piso 8 · CABA</span></div><span class="cl-arrow">→</span></a>
     </div>
   </div>
   <div class="contacto-form-box fade-up">
     <p class="contacto-form-titulo">Dejanos tu consulta</p>
     <form class="contacto-form" onsubmit="return false" aria-label="Formulario de contacto">
       <div class="cf-row">
-        <div class="cf-group"><label for="c-nombre">Nombre</label><input type="text" id="c-nombre" placeholder="Tu nombre" autocomplete="given-name"></div>
-        <div class="cf-group"><label for="c-tel">Teléfono</label><input type="tel" id="c-tel" placeholder="WhatsApp" autocomplete="tel"></div>
+        <div class="cf-group"><label for="c-nombre">Nombre</label><input type="text" id="c-nombre" placeholder="Tu nombre" autocomplete="given-name" required></div>
+        <div class="cf-group"><label for="c-tel">Teléfono</label><input type="tel" id="c-tel" placeholder="WhatsApp" autocomplete="tel" required></div>
       </div>
       <div class="cf-group"><label for="c-asunto">¿En qué te podemos ayudar?</label><select id="c-asunto"><option value="">Seleccioná</option><option>Quiero comprar</option><option>Quiero vender</option><option>Quiero alquilar</option><option>Solicitar tasación</option><option>Otro</option></select></div>
       <div class="cf-group"><label for="c-msg">Mensaje (opcional)</label><textarea id="c-msg" rows="3" placeholder="Contanos más sobre lo que buscás…"></textarea></div>
@@ -274,7 +316,7 @@
 <!-- FOOTER -->
 <footer>
   <a href="#" class="footer-logo">Altamira Propiedades</a>
-  <p>© 2025 Altamira Propiedades · Matrícula CUCICBA 7821</p>
+  <p>© <span id="footerAno"></span> Altamira Propiedades · Matrícula CUCICBA 7821</p>
   <ul class="footer-links"><li><a href="#">Privacidad</a></li><li><a href="#">Términos</a></li><li><a href="#">Sitemap</a></li></ul>
 </footer>
 
@@ -320,8 +362,8 @@
         <!-- formulario de consulta por la propiedad -->
         <p class="modal-form-titulo">Consultar por esta propiedad</p>
         <form class="modal-form" id="modalForm" onsubmit="return false" aria-label="Consulta por la propiedad">
-          <input type="text" placeholder="Tu nombre" id="mf-nombre" autocomplete="given-name">
-          <input type="tel" placeholder="Tu WhatsApp" id="mf-tel" autocomplete="tel">
+          <input type="text" placeholder="Tu nombre" id="mf-nombre" autocomplete="given-name" required>
+          <input type="tel" placeholder="Tu WhatsApp" id="mf-tel" autocomplete="tel" required>
           <textarea rows="2" placeholder="¿Qué querés saber?" id="mf-msg"></textarea>
           <button type="submit" class="modal-form-submit" id="mf-submit">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><polyline points="22 2 15 22 11 13 2 9 22 2"/></svg>
@@ -344,6 +386,22 @@
         <a class="modal-tel-btn" href="tel:+541148000000">📞 Llamar ahora</a>
         <button class="modal-compartir" id="modalCompartir">🔗 Copiar enlace</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL DE GUARDADAS -->
+<div class="guardadas-overlay" id="guardadasOverlay" role="dialog" aria-modal="true" aria-labelledby="guardadasTitulo" aria-hidden="true">
+  <div class="guardadas-box">
+    <div class="guardadas-header">
+      <h2 id="guardadasTitulo">Propiedades guardadas</h2>
+      <button class="guardadas-close" id="guardadasClose" aria-label="Cerrar">✕</button>
+    </div>
+    <div class="guardadas-lista" id="guardadasLista"></div>
+    <div class="guardadas-vacio" id="guardadasVacio">
+      <p class="guardadas-vacio-icono">♡</p>
+      <p class="guardadas-vacio-titulo">Todavía no guardaste ninguna</p>
+      <p class="guardadas-vacio-texto">Tocá el corazón en cualquier propiedad para sumarla acá y comparar tus opciones más fácil.</p>
     </div>
   </div>
 </div>
@@ -439,6 +497,101 @@ const PROPS = {
   }
 };
 
+/* ══════ FAVORITOS (localStorage) ══════ */
+function getFavoritos() {
+  try { return JSON.parse(localStorage.getItem('altamira_favoritos')) || []; }
+  catch { return []; }
+}
+function setFavoritos(arr) {
+  try { localStorage.setItem('altamira_favoritos', JSON.stringify(arr)); } catch {}
+}
+
+/* ══════ PANEL "PROPIEDADES GUARDADAS" ══════ */
+function actualizarContadorGuardadas() {
+  const n = getFavoritos().length;
+  const badge = document.getElementById('navGuardadasCount');
+  badge.textContent = n;
+  badge.hidden = n === 0;
+}
+
+function renderGuardadas() {
+  const ids = getFavoritos();
+  const lista = document.getElementById('guardadasLista');
+  const vacio = document.getElementById('guardadasVacio');
+  lista.innerHTML = '';
+
+  if (ids.length === 0) {
+    vacio.classList.add('visible');
+    return;
+  }
+  vacio.classList.remove('visible');
+
+  ids.forEach(id => {
+    const p = PROPS[id];
+    if (!p) return;
+    const item = document.createElement('div');
+    item.className = 'guardada-item';
+    item.innerHTML = `
+      <img class="guardada-img" src="${p.fotos[0]}" alt="${p.titulo}" tabindex="0" role="button" aria-label="Ver ${p.titulo}">
+      <div class="guardada-info" tabindex="0" role="button" aria-label="Ver ${p.titulo}">
+        <p class="guardada-tipo">${p.tipo}</p>
+        <p class="guardada-nombre">${p.titulo}</p>
+        <p class="guardada-precio">${p.precio}</p>
+      </div>
+      <button class="guardada-quitar" aria-label="Quitar ${p.titulo} de guardadas">✕</button>`;
+
+    const irAPropiedad = () => { cerrarGuardadas(); abrirModal(parseInt(id)); };
+    item.querySelector('.guardada-img').addEventListener('click', irAPropiedad);
+    item.querySelector('.guardada-info').addEventListener('click', irAPropiedad);
+    [item.querySelector('.guardada-img'), item.querySelector('.guardada-info')].forEach(el => {
+      el.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); irAPropiedad(); }
+      });
+    });
+    item.querySelector('.guardada-quitar').addEventListener('click', () => {
+      setFavoritos(getFavoritos().filter(f => f !== id));
+      // sincronizar el corazón de la card en el listado principal, si está visible
+      const card = document.querySelector(`.prop-card[data-id="${id}"] .prop-fav`);
+      if (card) {
+        card.textContent = '♡';
+        card.style.color = '';
+        card.setAttribute('aria-label', 'Guardar propiedad');
+      }
+      actualizarContadorGuardadas();
+      renderGuardadas();
+    });
+    lista.appendChild(item);
+  });
+}
+
+function abrirGuardadas() {
+  renderGuardadas();
+  const overlay = document.getElementById('guardadasOverlay');
+  overlay.classList.add('abierto');
+  overlay.removeAttribute('aria-hidden');
+  guardadasScrollY = window.scrollY;
+  document.body.style.position = 'fixed';
+  document.body.style.top = `-${guardadasScrollY}px`;
+  document.body.style.width = '100%';
+  guardadasUltimoFoco = document.activeElement;
+  document.getElementById('guardadasClose').focus();
+}
+function cerrarGuardadas() {
+  const overlay = document.getElementById('guardadasOverlay');
+  overlay.classList.remove('abierto');
+  overlay.setAttribute('aria-hidden', 'true');
+  document.body.style.cssText = '';
+  window.scrollTo(0, guardadasScrollY);
+  if (guardadasUltimoFoco) guardadasUltimoFoco.focus();
+}
+
+document.getElementById('navGuardadasBtn').addEventListener('click', abrirGuardadas);
+document.getElementById('guardadasClose').addEventListener('click', cerrarGuardadas);
+document.getElementById('guardadasOverlay').addEventListener('click', e => {
+  if (e.target.id === 'guardadasOverlay') cerrarGuardadas();
+});
+actualizarContadorGuardadas();
+
 /* ══════ RENDER CARDS ══════ */
 function renderCards() {
   const grid = document.getElementById('props-grid');
@@ -480,7 +633,7 @@ function renderCards() {
       <div class="prop-img">
         <img src="${p.fotos[0]}" alt="${p.titulo}" loading="${idx < 2 ? 'eager' : 'lazy'}">
         ${badges}
-        <button class="prop-fav" aria-label="Guardar en favoritos" onclick="event.stopPropagation()">♡</button>
+        <button class="prop-fav" aria-label="Guardar propiedad" onclick="event.stopPropagation()">♡</button>
         <span class="prop-img-count">📷 ${p.fotos.length} foto${p.fotos.length > 1 ? 's' : ''}</span>
       </div>
       <div class="prop-body">
@@ -505,13 +658,24 @@ function renderCards() {
     });
   });
 
-  // favoritos
+  // guardar / quitar de guardadas
+  const guardadas = getFavoritos();
   document.querySelectorAll('.prop-fav').forEach(btn => {
+    const cardId = btn.closest('.prop-card').dataset.id;
+    if (guardadas.includes(cardId)) {
+      btn.textContent = '♥';
+      btn.style.color = '#e53e3e';
+      btn.setAttribute('aria-label', 'Quitar de guardadas');
+    }
     btn.addEventListener('click', () => {
       const on = btn.textContent.trim() === '♥';
       btn.textContent = on ? '♡' : '♥';
       btn.style.color = on ? '' : '#e53e3e';
-      btn.setAttribute('aria-label', on ? 'Guardar en favoritos' : 'Quitar de favoritos');
+      btn.setAttribute('aria-label', on ? 'Guardar propiedad' : 'Quitar de guardadas');
+      let favs = getFavoritos();
+      favs = on ? favs.filter(f => f !== cardId) : [...favs, cardId];
+      setFavoritos(favs);
+      actualizarContadorGuardadas();
     });
   });
 
@@ -526,6 +690,7 @@ function renderCards() {
 
 /* ══════ MODAL ══════ */
 let fotoActual = 0, fotosActuales = [], scrollY = 0, ultimoFoco = null;
+let guardadasScrollY = 0, guardadasUltimoFoco = null;
 
 function abrirModal(id) {
   const p = PROPS[id];
@@ -551,7 +716,7 @@ function abrirModal(id) {
   // mapa embed
   const q = encodeURIComponent(p.mapaQ);
   document.getElementById('modalMapa').src =
-    `https://www.google.com/maps/embed/v1/place?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&q=${q}&zoom=14`;
+    `https://www.google.com/maps?q=${q}&z=14&output=embed`;
 
   // form submit → WA
   document.getElementById('mf-submit').onclick = () => {
@@ -665,7 +830,9 @@ function filtrar() {
   const tipo = document.getElementById('f-tipo').value;
   const zona = document.getElementById('f-zona').value.toLowerCase().trim();
   document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('activo'));
-  document.querySelector('.filtro-btn').classList.add('activo');
+  if (!op && !tipo && !zona) {
+    document.querySelector('.filtro-btn').classList.add('activo'); // "Todos" solo si no hay ningún filtro
+  }
   aplicarFiltro(op, tipo, zona);
 }
 
@@ -688,9 +855,12 @@ function aplicarFiltro(op, tipo, zona) {
     card.style.display = ok ? '' : 'none';
     if (ok) visibles++;
   });
-  // card grande: restaurar grid-column
+  // card grande: solo ocupa 2 columnas si es la primera visible (si no, rompe el grid)
   const grande = document.querySelector('.prop-card.grande');
-  if (grande && grande.style.display !== 'none') grande.style.gridColumn = '';
+  if (grande) {
+    const primeraVisible = [...cards].find(c => c.style.display !== 'none');
+    grande.style.gridColumn = (grande === primeraVisible) ? '' : 'span 1';
+  }
   document.getElementById('props-empty').classList.toggle('visible', visibles === 0);
   const res = document.getElementById('filtros-resultado');
   res.textContent = visibles > 0 ? `${visibles} propiedad${visibles !== 1?'es':''} encontrada${visibles !== 1?'s':''}` : '';
@@ -698,13 +868,21 @@ function aplicarFiltro(op, tipo, zona) {
 
 function ordenarCards() {
   const dir = document.getElementById('ordenar').value;
-  if (!dir) return;
   const grid = document.getElementById('props-grid');
   const cards = [...grid.querySelectorAll('.prop-card[data-id]')];
-  cards.sort((a, b) => {
-    const pa = parseInt(a.dataset.precio), pb = parseInt(b.dataset.precio);
-    return dir === 'asc' ? pa - pb : pb - pa;
-  });
+  const grande = document.querySelector('.prop-card.grande');
+
+  if (!dir) {
+    cards.sort((a, b) => a.dataset.id - b.dataset.id); // orden original
+    if (grande) grande.style.gridColumn = '';
+  } else {
+    cards.sort((a, b) => {
+      const pa = parseInt(a.dataset.precio), pb = parseInt(b.dataset.precio);
+      return dir === 'asc' ? pa - pb : pb - pa;
+    });
+    // si al ordenar la card grande no queda primera, la achicamos para no romper el grid
+    if (grande) grande.style.gridColumn = (cards[0] === grande) ? '' : 'span 1';
+  }
   const empty = document.getElementById('props-empty');
   cards.forEach(c => grid.insertBefore(c, empty));
 }
@@ -717,6 +895,18 @@ document.addEventListener('keydown', e => {
     if (e.key === 'Escape') cerrarFullscreen();
     if (e.key === 'ArrowLeft') irFotoFs(-1);
     if (e.key === 'ArrowRight') irFotoFs(1);
+    return;
+  }
+  // guardadas
+  const gv = document.getElementById('guardadasOverlay');
+  if (gv.classList.contains('abierto')) {
+    if (e.key === 'Escape') cerrarGuardadas();
+    if (e.key === 'Tab') {
+      const foc = gv.querySelectorAll('button:not([disabled]),a[href],[tabindex]:not([tabindex="-1"])');
+      const first = foc[0], last = foc[foc.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
     return;
   }
   // modal
@@ -800,12 +990,29 @@ document.querySelectorAll('.fade-up').forEach((el, i) => {
   fadeObserver.observe(el);
 });
 
+/* ══════ FOOTER: año dinámico ══════ */
+document.getElementById('footerAno').textContent = new Date().getFullYear();
+
 /* ══════ HERO: ROTACIÓN AUTOMÁTICA ══════ */
 (function () {
   const slides = document.querySelectorAll('.hero-bg');
   if (slides.length < 2) return;
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce) return; // si el usuario pidió menos movimiento, dejamos la primera fija
+  if (reduce) return; // si el usuario pidió menos movimiento, dejamos la primera fija y ni cargamos el resto
+
+  // las siguientes 3 fotos no tienen background-image de entrada (data-src),
+  // así la carga inicial de la página solo pesa 1 imagen. Se inyectan
+  // recién cuando el navegador está libre, con margen antes de necesitarse.
+  function precargarSiguientes() {
+    slides.forEach(s => {
+      if (s.dataset.src) {
+        s.style.backgroundImage = `url('${s.dataset.src}')`;
+        delete s.dataset.src;
+      }
+    });
+  }
+  if ('requestIdleCallback' in window) requestIdleCallback(precargarSiguientes, { timeout: 3000 });
+  else setTimeout(precargarSiguientes, 2000);
 
   let idx = 0;
   let timer = null;
